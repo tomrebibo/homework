@@ -1,6 +1,7 @@
 pipeline {
-    agent { docker { image "jenkins/slave"}
-    }
+    agent {
+         docker { image "python:3.9" }
+        }
             steps {
                 echo 'Building..'
             }
