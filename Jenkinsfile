@@ -3,7 +3,7 @@ pipeline {
         docker { image 'python:3.9' }
     }
     stages {
-        stage('Test') {
+        stage('Test1') {
             steps {
                 sh 'python --version'
             }
