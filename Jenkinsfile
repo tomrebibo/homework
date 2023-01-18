@@ -1,8 +1,6 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
+    agent { docker { image "jenkins/slave"}
+    }
             steps {
                 echo 'Building..'
             }
