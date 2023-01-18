@@ -6,11 +6,18 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'python --version'
-                sh 'cp ./Dockerfile ./Dockerfile'
-                sh 'cp ./app.py ./app.py'
-                sh 'sleep 20'
-
             }
+        }
+
+        stage('build'){
+            sh 'docker build -t tomrebibo/app:4 .'
+            
+
+
+        }
+
+        stage('cleanup'){
+            sh 'docker system prune -a'
         }
     }
 }
