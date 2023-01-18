@@ -10,14 +10,19 @@ pipeline {
         }
 
         stage('build'){
-            sh 'docker build -t tomrebibo/app:4 .'
-            
+            steps{
+                sh 'docker build -t tomrebibo/app:4 .'
+            }
+
 
 
         }
 
         stage('cleanup'){
-            sh 'docker system prune -a'
+            steps{
+                sh 'docker system prune -a'
+            }
+            
         }
     }
 }
