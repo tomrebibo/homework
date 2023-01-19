@@ -16,7 +16,7 @@ pipeline {
             steps{
                 sh 'docker build -t tomrebibo/app:4 .'
                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
-                sh 'docker push tomrebibo/out:4 '
+                sh 'docker push tomrebibo/app:4 '
 
             }
 
