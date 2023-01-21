@@ -5,13 +5,6 @@ pipeline {
     environment {
      dockerhub=credentials('DOCKERHUB')
     }
-    stages {
-        stage('Test1') {
-            steps {
-                sh 'docker version'
-            }
-        }
-
         stage('build'){
             steps{
                 sh 'docker build -t tomrebibo/app:4 .'
@@ -27,7 +20,7 @@ pipeline {
                 sshagent(['ssh-master']) {
                     sh 'scp -r -o StrictHostKeyChecking=no ./app-chart/ ec2-user@3.8.199.162:/home/ec2-user/'
                     script{
-                        sh "ssh ec2-user@3.8.199.162 helm upgrade --set-string .Values.container.tag=4 --install my-app /home/ec2-user/app-chart"
+                        sh "ssh ec2-user@3.8.199.162 helm upgrade --set-string container.tag=4 --install my-app /home/ec2-user/app-chart"
                     }
                     }
             }
