@@ -1,4 +1,8 @@
 pipeline {
+    agent {
+        docker { image 'docker:latest' }
+    }
+
     agent any
     environment {
      dockerhub=credentials('DOCKERHUB')
