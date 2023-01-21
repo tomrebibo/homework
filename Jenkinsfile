@@ -23,7 +23,7 @@ pipeline {
         stage('deploy'){
             steps{
                 sshagent(['ssh-master']) {
-                    sh 'ssh ec2-user@3.8.199.162 pwd '
+                    sh 'ssh -o StrictHostKeyChecking=no ec2-user@3.8.199.162 pwd '
                     }
             }
         }
