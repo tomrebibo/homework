@@ -1,0 +1,5 @@
+replicaCount: 2
+name : app
+container:
+  image: tomrebibo/app:3
+  port: 5000
