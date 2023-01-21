@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: {{.values.name}}
+  replicas: {{.values.replicaCount}}
+  template:
+    metadata:
+      labels:
+        app: {{.values.name}}
+    spec:
+      containers:
+      - name: {{.values.name}}
+        image: {{.values.container.image}}
+        ports:
+        - containerPort: {{.values.container.port}}
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+spec:
+  selector:
+    app: {{.values.name}}
+  ports:
+    - port: {{.values.container.port}}
+      targetPort: {{.values.container.port}}
+  type: LoadBalancer
