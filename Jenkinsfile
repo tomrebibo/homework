@@ -25,7 +25,7 @@ pipeline {
         stage('deploy'){
             steps{
                 sshagent(['ssh-master']) {
-                    sh 'scp -o StrictHostKeyChecking=no ./app-chart/ ec2-user@3.8.199.162:/home/ec2-user/'
+                    sh 'scp -r -o StrictHostKeyChecking=no ./app-chart/ ec2-user@3.8.199.162:/home/ec2-user/'
                     script{
                         "ssh -o StrictHostKeyChecking=no helm install my-app /home/ec2-user/app-chart "
                     }
