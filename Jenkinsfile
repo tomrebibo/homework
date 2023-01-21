@@ -20,8 +20,14 @@ pipeline {
 
             }
 
+        }
 
-
+        stage('deploy'){
+            steps{
+                sshagent(['ssh-master']) {
+                    sh 'ssh 3.8.199.162 pwd '
+                    }
+            }
         }
 
         stage('cleanup'){
