@@ -6,12 +6,6 @@ pipeline {
      dockerhub=credentials('DOCKERHUB')
     }
     stages {
-        stage('Test1') {
-            steps {
-                sh 'docker version'
-            }
-        }
-
         stage('build'){
             steps{
                 sh 'docker build -t tomrebibo/app:4 .'
