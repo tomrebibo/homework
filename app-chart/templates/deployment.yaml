@@ -5,18 +5,18 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{.values.name}}
-  replicas: {{.values.replicaCount}}
+      app: {{.Values.name}}
+  replicas: {{.Values.replicaCount}}
   template:
     metadata:
       labels:
-        app: {{.values.name}}
+        app: {{.Values.name}}
     spec:
       containers:
-      - name: {{.values.name}}
-        image: {{.values.container.image}}
+      - name: {{.Values.name}}
+        image: {{.Values.container.image}}
         ports:
-        - containerPort: {{.values.container.port}}
+        - containerPort: {{.Values.container.port}}
 
 
 ---
@@ -26,8 +26,8 @@ metadata:
   name: example-service
 spec:
   selector:
-    app: {{.values.name}}
+    app: {{.Values.name}}
   ports:
-    - port: {{.values.container.port}}
-      targetPort: {{.values.container.port}}
+    - port: {{.Values.container.port}}
+      targetPort: {{.Values.container.port}}
   type: LoadBalancer
