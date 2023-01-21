@@ -27,7 +27,7 @@ pipeline {
                 sshagent(['ssh-master']) {
                     sh 'scp -r -o StrictHostKeyChecking=no ./app-chart/ ec2-user@3.8.199.162:/home/ec2-user/'
                     script{
-                        sh "ssh ec2-user@3.8.199.162 helm install my-app /home/ec2-user/app-chart"
+                        sh "ssh ec2-user@3.8.199.162 helm upgrade --setstring .Values.container.tag=4 --install my-app /home/ec2-user/app-chart"
                     }
                     }
             }
