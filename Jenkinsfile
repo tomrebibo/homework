@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'docker:latest' }
+        docker { image 'alpine/helm' }
     }
     environment {
      dockerhub=credentials('DOCKERHUB')
