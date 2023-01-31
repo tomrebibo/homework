@@ -17,7 +17,6 @@ pipeline {
                 sh 'docker build -t tomrebibo/app:${BUILD_NUMBER} .'
                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
                 sh 'docker push tomrebibo/app:${BUILD_NUMBER} '
-                sh 'sleep 30'
 
             }
 
@@ -31,7 +30,6 @@ pipeline {
                 ok "deploy to prod"
             }
             steps{
-                sh 'echo deploy to prod'
             }
         }
 
