@@ -26,10 +26,10 @@ pipeline {
 
         stage('waiting'){
             steps{
-                input{
+                input(
                     message "continue?"
                     ok "deploy to prod"
-                }
+                )
             }
         }
 
