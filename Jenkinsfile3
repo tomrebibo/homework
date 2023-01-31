@@ -1,0 +1,39 @@
+pipeline {
+    agent none
+    environment {
+     dockerhub=credentials('DOCKERHUB')
+    }
+        
+
+    stages {
+
+
+        stage('build'){
+            agent {
+                docker { image 'docker:latest' }
+            }
+            steps{
+                sh 'docker build -t tomrebibo/app:${BUILD_NUMBER} .'
+                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+                sh 'docker push tomrebibo/app:${BUILD_NUMBER} '
+
+            }
+
+        }
+
+        
+
+        stage('waiting'){
+            input{
+                message "continue?"
+                ok "deploy to prod"
+            }
+            steps{
+                sh 'echo deploy to prod'
+            }
+        }
+
+
+     
+    }
+}
