@@ -2,9 +2,7 @@ pipeline {
     agent none
     environment {
      dockerhub=credentials('DOCKERHUB')
-    }
-        
-
+    }        
     stages {
 
 
@@ -12,10 +10,14 @@ pipeline {
             agent {
                 docker { image 'docker:latest' }
             }
+            environment {
+                dockerhub=credentials('DOCKERHUB')
+            }
             steps{
                 sh 'docker build -t tomrebibo/app:${BUILD_NUMBER} .'
                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
                 sh 'docker push tomrebibo/app:${BUILD_NUMBER} '
+                sh 'sleep 30'
 
             }
 
@@ -30,6 +32,15 @@ pipeline {
             }
             steps{
                 sh 'echo deploy to prod'
+            }
+        }
+
+        stage("echo"){
+            agent {
+                docker { image 'docker:latest' }
+            }
+            steps{
+                sh 'echo tom'
             }
         }
 
