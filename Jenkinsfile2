@@ -28,6 +28,9 @@ pipeline {
                 message "continue?"
                 ok "deploy to prod"
             }
+            steps{
+                sh 'echo deploy to prod'
+            }
         }
 
         stage('deploy'){
