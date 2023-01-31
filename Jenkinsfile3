@@ -34,7 +34,7 @@ pipeline {
 
         stage("echo"){
             agent {
-                docker { image 'docker:latest' }
+                docker { image 'ubuntu:latest' }
             }
             steps{
                 sh 'ls -a'
